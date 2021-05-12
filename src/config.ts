@@ -40,7 +40,8 @@ export function getSnippetForExt(ext: string): ICommand | null {
 export function getMatchText(cmd: ICommand, text: string): [boolean, string] {
     let line_text = text.trim();
     let [start_text, end_text] = cmd.list;
-    if (line_text.startsWith(start_text + START_TEXT) && line_text.endsWith(end_text)) {
+    start_text = start_text + START_TEXT
+    if (line_text.startsWith(start_text) && line_text.endsWith(end_text)) {
         let match_content = line_text.slice(start_text.length)
         if (end_text) {
             match_content = match_content.slice(0, match_content.length - end_text.length)

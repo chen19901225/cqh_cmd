@@ -2,7 +2,7 @@
 	"name": "cqh-cmd",
 	"displayName": "cqh_cmd",
 	"description": "",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"publisher": "cqh",
 	"engines": {
 		"vscode": "^1.56.0"
@@ -10,6 +10,9 @@
 	"categories": [
 		"Other"
 	],
+	"repository": {
+		"url": "https://github.com/chen19901225/cqh_cmd"
+	},
 	"activationEvents": [
 		"*"
 	],
@@ -23,7 +26,7 @@
 		],
 		"configuration": {
 			"properties": {
-				"cqh-file-tag.byExt": {
+				"cqh-cmd.byExt": {
 					"type": "array",
 					"items": {
 						"type": "object",

@@ -18,7 +18,7 @@ export class CqhCodeLenProvider implements CodeLensProvider {
         // let snippet = utils.getWorkSpaceRoot
         let ext = path.extname(document.uri.fsPath);
         let snippet = getSnippetForExt(ext);
-        console.log("snippet:", snippet);
+        // console.log("snippet:", snippet);
         if (snippet == null) {
             return Promise.resolve(blocks);
         }
@@ -37,7 +37,7 @@ export class CqhCodeLenProvider implements CodeLensProvider {
             // }
             let [flag, match_text] = getMatchText(snippet, currentLine);
             if (flag) {
-                console.log("flag", flag);
+                // console.log("flag", flag);
                 requestRanges.push([line_index, line_index + 1]);
             }
 
