@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import { cmd_run } from './constant';
+import { CMD_LIST, cmd_run } from './constant';
 import { run_from_history } from './handler/handler_run_from_history';
 import { CqhCodeLenProvider } from './provider/cqh_run_provider';
 import { CqhRunner } from './runner';
@@ -39,9 +39,10 @@ export function activate(context: vscode.ExtensionContext) {
 
 
 	context.subscriptions.push(disposable);
-	let listDisposable = vscode.commands.registerCommand(cmd_run, (document: vscode.TextDocument, range: vscode.Range)=> {
+	let listDisposable = vscode.commands.registerCommand(CMD_LIST, (document: vscode.TextDocument, range: vscode.Range)=> {
 		run_from_history(document, range);
 	})
+	context.subscriptions.push(listDisposable);
 }
 
 // this method is called when your extension is deactivated
