@@ -2,6 +2,7 @@ import * as vscode from "vscode"
 import * as path from "path"
 import * as fs from "fs"
 import { IConfig, getSnippetForExt, getMatchText } from "./config";
+import { Persist } from "./persist";
 
 
 
@@ -33,6 +34,10 @@ export class CqhRunner {
     }
 
     async goto(document: vscode.TextDocument, range: vscode.Range) {
+        let workspaceRoot = "";
+        if (vscode.workspace.workspaceFolders) {
+            workspaceRoot = vscode.workspace.workspaceFolders[0].uri.fsPath;
+        }
         let selectedText: string = document.getText(range).trim();
         let ext = path.extname(document.uri.fsPath);
         let snippet = getSnippetForExt(ext);
@@ -47,6 +52,7 @@ export class CqhRunner {
             return
         }
         match_text = this.simpleReplace(match_text, document);
+        Persist.saveCmdStr(workspaceRoot, match_text);
         let terminal = vscode.window.activeTerminal!;
         // let command = `pytest -v  -x ${relative_path}`;
         terminal.show();
