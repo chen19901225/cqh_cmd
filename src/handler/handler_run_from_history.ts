@@ -15,7 +15,7 @@ export function run_from_history(document: vscode.TextDocument, range: vscode.Ra
     if (vscode.workspace.workspaceFolders) {
         workspaceRoot = vscode.workspace.workspaceFolders[0].uri.fsPath;
     }
-    let cmdList = Persist.loadFromFile(workspaceRoot);
+    let cmdList = Persist.loadFromFile(Persist.historyPath(workspaceRoot));
     let quickItemList: vscode.QuickPickItem[] = []
     let i = 1;
     for (let cmd of cmdList) {
