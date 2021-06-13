@@ -2,7 +2,7 @@
 	"name": "cqh-cmd",
 	"displayName": "cqh_cmd",
 	"description": "",
-	"version": "0.0.7",
+	"version": "0.0.9",
 	"publisher": "cqh",
 	"engines": {
 		"vscode": "^1.56.0"
@@ -26,12 +26,21 @@
 			{
 				"command": "cqh_cmd.list",
 				"title": "run from list"
+			},
+			{
+				"command": "cqh_cmd.run_from_file",
+				"title": "run from run_from_file"
 			}
 		],
 		"keybindings": [
 			{
 				"command": "cqh_cmd.list",
 				"key": "alt+d l"
+			},
+			{
+				"command": "cqh_cmd.run_from_file",
+				"key": "alt+d f",
+				"when": "editorTextFocus"
 			}
 		],
 		"configuration": {

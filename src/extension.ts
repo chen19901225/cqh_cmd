@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 import { CMD_LIST, cmd_run } from './constant';
+import { run_from_file } from './handler/handler_run_from_file';
 import { run_from_history } from './handler/handler_run_from_history';
 import { CqhCodeLenProvider } from './provider/cqh_run_provider';
 import { CqhRunner } from './runner';
@@ -43,6 +44,11 @@ export function activate(context: vscode.ExtensionContext) {
 		run_from_history(document, range);
 	})
 	context.subscriptions.push(listDisposable);
+
+	let fileDisposable = vscode.commands.registerTextEditorCommand("cqh_cmd.run_from_file", async (textEditor: vscode.TextEditor, edit: vscode.TextEditorEdit) => {
+		await run_from_file(textEditor, edit);
+	})
+	context.subscriptions.push(fileDisposable);
 }
 
 // this method is called when your extension is deactivated

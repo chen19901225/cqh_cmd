@@ -16,10 +16,16 @@ export class Persist {
         let oldCmdList = Persist.loadFromFile(Persist.historyPath(dir));
         // oldCmdList.unshift(cmdStr);
         if (oldCmdList.length > 0) {
-            if (oldCmdList[0] != cmdStr) {
-                oldCmdList.unshift(cmdStr)
-                oldCmdList = oldCmdList.slice(0, 30);
+            let newCmdList: string[] = []
+            for (let cmd of oldCmdList) {
+                if (cmd.trim() != cmdStr.trim()) {
+                    newCmdList.push(cmd);
+                }
+                newCmdList.unshift(cmdStr);
+                newCmdList = newCmdList.slice(0, 30)
+                oldCmdList = newCmdList
             }
+
         } else {
             oldCmdList.unshift(cmdStr)
         }
