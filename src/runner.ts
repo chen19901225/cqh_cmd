@@ -28,6 +28,8 @@ export class CqhRunner {
         let uri = path.dirname(document.uri.fsPath);
         final = final.replace(/__proj_dir__/g, workspaceRoot);  // 跟路劲
         final = final.replace(/__proj__/g, workspaceRoot);
+        final = final.replace(/{{proj}}/g, workspaceRoot);
+        final = final.replace(/{{file}}/g, document.uri.fsPath);
         final = final.replace(/__file__/g, document.uri.fsPath);
         final = final.replace(/__dir__/g, uri);
         return final;

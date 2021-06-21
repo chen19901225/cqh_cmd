@@ -2,7 +2,7 @@
 	"name": "cqh-cmd",
 	"displayName": "cqh_cmd",
 	"description": "",
-	"version": "0.0.9",
+	"version": "0.0.10",
 	"publisher": "cqh",
 	"engines": {
 		"vscode": "^1.56.0"
