@@ -54,6 +54,7 @@ export class CqhRunner {
             return
         }
         match_text = this.simpleReplace(match_text, document);
+        // 保存命令行列表
         Persist.saveCmdStr(workspaceRoot, match_text);
         let terminal = vscode.window.activeTerminal!;
         // let command = `pytest -v  -x ${relative_path}`;

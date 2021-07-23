@@ -5,3 +5,11 @@
 ```
 
 run command in terminal in file
+
+
+## keybord
+
+
+* `alt+d l` run from history
+
+* `alt+d f` run from current file
