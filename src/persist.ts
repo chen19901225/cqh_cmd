@@ -14,22 +14,24 @@ export class Persist {
 
     public static saveCmdStr(dir: string, cmdStr: string) {
         let oldCmdList = Persist.loadFromFile(Persist.historyPath(dir));
-        // oldCmdList.unshift(cmdStr);
-        if (oldCmdList.length > 0) {
-            let newCmdList: string[] = []
-            for (let cmd of oldCmdList) {
-                if (cmd.trim() != cmdStr.trim()) {
-                    newCmdList.push(cmd);
-                }
-                newCmdList.unshift(cmdStr);
-                newCmdList = newCmdList.slice(0, 30)
-                oldCmdList = newCmdList
+        let new_cmd_list: string[] = []
+        for (let cmd_str of oldCmdList) {
+            cmd_str = cmd_str.trim();
+            if (new_cmd_list.indexOf(cmd_str) === -1) {
+                new_cmd_list.push(cmd_str)
             }
-
-        } else {
-            oldCmdList.unshift(cmdStr)
         }
-        fs.writeJsonSync(Persist.historyPath(dir), oldCmdList);
+        cmdStr = cmdStr.trim();
+        // oldCmdList.unshift(cmdStr);
+        if (new_cmd_list.length > 0) {
+            if (new_cmd_list.indexOf(cmdStr) == -1) {
+                new_cmd_list.splice(new_cmd_list.indexOf(cmdStr))
+            }
+            new_cmd_list.unshift(cmdStr);
+        } else {
+            new_cmd_list.unshift(cmdStr)
+        }
+        fs.writeJsonSync(Persist.historyPath(dir), new_cmd_list);
 
     }
     public static loadFromFile(file_path: string): Array<string> {

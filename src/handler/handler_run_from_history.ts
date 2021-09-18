@@ -16,9 +16,16 @@ export function run_from_history(document: vscode.TextDocument, range: vscode.Ra
         workspaceRoot = vscode.workspace.workspaceFolders[0].uri.fsPath;
     }
     let cmdList = Persist.loadFromFile(Persist.historyPath(workspaceRoot));
+    let new_cmd_list:string[] = []
+    for(let cmd_str of cmdList ){
+        cmd_str = cmd_str.trim();
+        if(new_cmd_list.indexOf(cmd_str) === -1) {
+            new_cmd_list.push(cmd_str)
+        }
+    }
     let quickItemList: vscode.QuickPickItem[] = []
     let i = 1;
-    for (let cmd of cmdList) {
+    for (let cmd of new_cmd_list) {
         quickItemList.push({
             "label": leftPad(i, 2) + ". " + cmd,
             "description": cmd
